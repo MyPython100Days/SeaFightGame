@@ -13,8 +13,8 @@ app_running = True
 size_canvas_x = 600
 size_canvas_y = 600
 # размер на игралното поле в клетки
-s_x = s_y = 10
-# размер на стъпката между линиите, те ще са 11 на брой, защото клетките са 10
+s_x = s_y = 9
+# размер на стъпката между линиите, линиите ще са +1 на брой
 step_x = size_canvas_x // s_x
 step_y = size_canvas_y // s_y
 # Коригираме размера на полето - за всякъв брой клетки
@@ -72,6 +72,24 @@ b1 = Button(tk, text="Започни отначало!", command = button_begin_
 b1.place(x = size_canvas_x + 20, y = 70)
 
 draw_table()
+
+def add_to_all(event):
+    _type = 0  # ЛБМ
+    if event.num == 3:
+        _type = 1  # ДБМ
+    # print(_type)
+    # за да получим координатите на мишката само по полето, а не глобално по екрана
+    mouse_x = canvas.winfo_pointerx() - canvas.winfo_rootx()
+    mouse_y = canvas.winfo_pointery() - canvas.winfo_rooty()
+    # print(mouse_x, mouse_y)
+    # преобразуваме в номер на клетка по х и у
+    ip_x = mouse_x // step_x
+    ip_y = mouse_y // step_y
+    print(ip_x, ip_y, "_type ", _type)
+
+# Искаме да проследим натискането на бутон на мишката
+canvas.bind_all("<Button-1>", add_to_all)  # Ляв бутон ЛБМ
+canvas.bind_all("<Button-3>", add_to_all)  # Десен бутон ДБМ
 
 # Създаваме цикъла на работa на играта
 while app_running:
