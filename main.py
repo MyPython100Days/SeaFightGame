@@ -35,16 +35,16 @@ tk.wm_attributes("-topmost", 1)
 canvas = Canvas(tk, width=size_canvas_x, height=size_canvas_x, bd=0 ,highlightthickness=0)
 # 1. На прозореца създаваме правоъгълник с бял цвят
 canvas.create_rectangle(0, 0, size_canvas_x, size_canvas_y, fill="white")
-# 2. Опаковаме канваса и обновяваме tk
+# 2. Опаковаме канваса и обновяваме tk(tk - това е обектът, който описва нашата игра)
 canvas.pack()
 tk.update()
 
 
-# Създаваме цикъла на работо на играта
+# Създаваме цикъла на работa на играта
 while app_running:
     tk.update_idletasks()
     tk.update()
-    # Поставяме малко забавяне тук
+    # Поставяме малко забавяне на играта тук
     time.sleep(0.005)
 
 
